@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit & Ligne Éditoriale — L'Instant Glow</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cherry: #8B0435;
+    --cherry-dark: #6E0329;
+    --cherry-light: rgba(139,4,53,0.07);
+    --cherry-mid: rgba(139,4,53,0.14);
+    --ink: #111111;
+    --ink-soft: #2E2A28;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+    --border: #E5E0DA;
+    --border-dark: #C8C0B8;
+    --muted: #7A746E;
+    --muted-light: #B0A9A2;
+    --green: #3D7A4E;
+    --green-light: rgba(61,122,78,0.08);
+    --orange: #C4691A;
+    --orange-light: rgba(196,105,26,0.08);
+    --red-soft: rgba(180,30,30,0.08);
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘Mulish’, sans-serif;
+background: var(–bg);
+color: var(–ink);
+line-height: 1.7;
+}
+
+/* ── COVER ── */
+.cover {
+background: var(–ink);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+position: relative;
+overflow: hidden;
+page-break-after: always;
+}
+
+.cover-stripe { height: 4px; background: var(–cherry); }
+
+.cover-pattern {
+position: absolute;
+inset: 0;
+background-image: repeating-linear-gradient(
+-45deg,
+transparent,
+transparent 40px,
+rgba(139,4,53,0.025) 40px,
+rgba(139,4,53,0.025) 41px
+);
+pointer-events: none;
+}
+
+.cover-inner {
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 3.5rem 5rem;
+position: relative;
+z-index: 1;
+}
+
+.cover-top {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.logo-block {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.logo-svg { width: 52px; height: 52px; }
+
+.logo-text {
+font-size: 0.62rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.4);
+font-weight: 300;
+line-height: 1.6;
+}
+.logo-text strong {
+display: block;
+color: rgba(255,255,255,0.85);
+font-weight: 600;
+font-size: 0.78rem;
+letter-spacing: 0.15em;
+}
+
+.cover-doc-type {
+font-size: 0.58rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–cherry);
+font-weight: 600;
+border: 1px solid rgba(139,4,53,0.4);
+padding: 0.4rem 0.9rem;
+border-radius: 2px;
+align-self: flex-start;
+}
+
+.cover-mid {
+max-width: 700px;
+}
+
+.cover-eyebrow {
+display: flex;
+align-items: center;
+gap: 0.8rem;
+margin-bottom: 1.2rem;
+font-size: 0.62rem;
+letter-spacing: 0.28em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.35);
+font-weight: 400;
+}
+.cover-eyebrow-dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(–cherry);
+flex-shrink: 0;
+}
+
+.cover-h1 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.8rem, 5.5vw, 5rem);
+font-weight: 300;
+color: white;
+line-height: 1.0;
+margin-bottom: 0.2rem;
+}
+.cover-h1 em {
+font-style: italic;
+color: rgba(255,255,255,0.45);
+}
+.cover-h1 strong {
+font-weight: 600;
+display: block;
+}
+
+.cover-divider {
+width: 60px;
+height: 2px;
+background: var(–cherry);
+margin: 1.5rem 0;
+}
+
+.cover-desc {
+font-size: 0.82rem;
+color: rgba(255,255,255,0.45);
+font-weight: 300;
+line-height: 1.7;
+max-width: 480px;
+}
+
+.cover-meta-row {
+display: flex;
+gap: 3rem;
+flex-wrap: wrap;
+margin-top: 2.5rem;
+padding-top: 2rem;
+border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cover-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+.cover-meta-label {
+font-size: 0.56rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–cherry);
+font-weight: 600;
+}
+.cover-meta-value {
+font-size: 0.85rem;
+color: rgba(255,255,255,0.75);
+font-weight: 300;
+}
+
+.cover-bottom {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+.cover-bottom-note {
+font-size: 0.65rem;
+color: rgba(255,255,255,0.18);
+font-weight: 300;
+}
+.cover-toc {
+display: flex;
+gap: 1.5rem;
+flex-wrap: wrap;
+}
+.cover-toc-item {
+font-size: 0.62rem;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.3);
+font-weight: 400;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+}
+.cover-toc-item::before {
+content: ‘’;
+width: 16px;
+height: 1px;
+background: var(–cherry);
+}
+
+/* ── DOC WRAP ── */
+.doc {
+max-width: 840px;
+margin: 0 auto;
+padding: 4rem 3rem 6rem;
+}
+
+/* ── PART TITLE (big section) ── */
+.part-title {
+display: flex;
+align-items: flex-end;
+gap: 0;
+margin: 0 0 2.5rem;
+position: relative;
+padding-bottom: 1.5rem;
+}
+.part-title::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 1px;
+background: var(–border);
+}
+.part-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 7rem;
+font-weight: 600;
+color: var(–cherry-mid);
+line-height: 1;
+flex-shrink: 0;
+letter-spacing: -0.04em;
+margin-right: 1rem;
+}
+.part-meta { padding-bottom: 0.5rem; }
+.part-tag {
+font-size: 0.58rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–cherry);
+font-weight: 600;
+margin-bottom: 0.25rem;
+}
+.part-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.5rem;
+font-weight: 600;
+color: var(–ink);
+line-height: 1.1;
+}
+.part-sub {
+font-size: 0.78rem;
+color: var(–muted);
+font-weight: 300;
+margin-top: 0.3rem;
+}
+
+/* ── SECTION HEADER ── */
+.sec-head {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin: 2.5rem 0 1.2rem;
+}
+.sec-head-icon {
+width: 32px;
+height: 32px;
+background: var(–cherry);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+font-size: 0.8rem;
+}
+.sec-head-label {
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted-light);
+margin-bottom: 0.1rem;
+font-weight: 600;
+}
+.sec-head-title {
+font-size: 1rem;
+font-weight: 600;
+color: var(–ink);
+}
+.sec-line { flex: 1; height: 1px; background: var(–border); }
+
+/* ── CARDS ── */
+.card {
+background: var(–white);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+margin-bottom: 0.9rem;
+}
+.card-top {
+padding: 0.65rem 1.3rem;
+background: var(–cherry);
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.card-top-title {
+font-size: 0.6rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: white;
+font-weight: 600;
+}
+.card-body { padding: 1.2rem 1.4rem; }
+.card-body p {
+font-size: 0.86rem;
+color: var(–ink-soft);
+line-height: 1.75;
+font-weight: 300;
+}
+
+/* score card variant */
+.card-top.green { background: var(–green); }
+.card-top.orange { background: var(–orange); }
+.card-top.dark { background: var(–ink); }
+
+/* ── NOTE / HIGHLIGHT ── */
+.note {
+padding: 1rem 1.3rem;
+border-radius: 0 10px 10px 0;
+border-left: 3px solid;
+margin-bottom: 0.9rem;
+font-size: 0.84rem;
+line-height: 1.7;
+font-weight: 300;
+}
+.note.cherry { background: var(–cherry-light); border-color: var(–cherry); color: var(–ink); }
+.note.green { background: var(–green-light); border-color: var(–green); color: var(–ink); }
+.note.orange { background: var(–orange-light); border-color: var(–orange); color: var(–ink); }
+.note strong { font-weight: 600; }
+.note.cherry strong { color: var(–cherry); }
+.note.green strong { color: var(–green); }
+.note.orange strong { color: var(–orange); }
+
+/* ── LIST ── */
+.list {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.list li {
+display: flex;
+align-items: flex-start;
+gap: 0.75rem;
+padding: 0.5rem 0;
+border-bottom: 1px solid var(–border);
+font-size: 0.85rem;
+color: var(–ink-soft);
+font-weight: 300;
+line-height: 1.65;
+}
+.list li:last-child { border-bottom: none; }
+.list-icon { flex-shrink: 0; font-size: 0.75rem; margin-top: 0.2rem; }
+.list li strong { font-weight: 600; color: var(–ink); }
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
+
+/* ── SCORE BAR ── */
+.score-item {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding: 0.7rem 0;
+border-bottom: 1px solid var(–border);
+}
+.score-item:last-child { border-bottom: none; }
+.score-label { flex: 1; font-size: 0.82rem; color: var(–ink-soft); font-weight: 400; }
+.score-bar-wrap { width: 120px; flex-shrink: 0; }
+.score-bar-bg {
+height: 5px;
+background: var(–border);
+border-radius: 10px;
+overflow: hidden;
+}
+.score-bar-fill {
+height: 100%;
+border-radius: 10px;
+background: var(–cherry);
+transition: width 1s ease;
+}
+.score-bar-fill.ok { background: var(–orange); }
+.score-bar-fill.good { background: var(–green); }
+.score-val {
+font-size: 0.78rem;
+font-weight: 600;
+color: var(–muted);
+min-width: 28px;
+text-align: right;
+}
+
+/* ── PILLAR CARD ── */
+.pillar {
+background: var(–white);
+border: 1px solid var(–border);
+border-radius: 14px;
+overflow: hidden;
+margin-bottom: 0.9rem;
+position: relative;
+}
+.pillar-num {
+position: absolute;
+top: 1rem;
+right: 1.2rem;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 4rem;
+font-weight: 600;
+color: var(–cherry-mid);
+line-height: 1;
+letter-spacing: -0.03em;
+}
+.pillar-header {
+padding: 1.2rem 1.4rem 0.8rem;
+border-bottom: 1px solid var(–border);
+}
+.pillar-tag {
+font-size: 0.57rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–cherry);
+font-weight: 600;
+margin-bottom: 0.3rem;
+}
+.pillar-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.45rem;
+font-weight: 600;
+color: var(–ink);
+line-height: 1.2;
+padding-right: 3rem;
+}
+.pillar-subtitle {
+font-size: 0.76rem;
+color: var(–muted);
+font-weight: 300;
+margin-top: 0.25rem;
+}
+.pillar-body { padding: 1rem 1.4rem; }
+.pillar-body p {
+font-size: 0.83rem;
+color: var(–ink-soft);
+line-height: 1.7;
+font-weight: 300;
+margin-bottom: 0.7rem;
+}
+.pillar-body p:last-child { margin-bottom: 0; }
+.pillar-formats {
+display: flex;
+flex-wrap: wrap;
+gap: 0.35rem;
+margin-top: 0.5rem;
+}
+.format-chip {
+font-size: 0.65rem;
+letter-spacing: 0.05em;
+color: var(–cherry);
+background: var(–cherry-light);
+border: 1px solid rgba(139,4,53,0.2);
+padding: 0.2rem 0.6rem;
+border-radius: 20px;
+font-weight: 500;
+}
+
+/* ── TON BLOCK ── */
+.ton-split {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0;
+background: var(–border);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+margin-bottom: 0.9rem;
+}
+.ton-col { background: var(–white); padding: 1.3rem 1.5rem; }
+.ton-col:first-child { border-right: 1px solid var(–border); }
+.ton-col-label {
+font-size: 0.58rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+font-weight: 600;
+margin-bottom: 0.6rem;
+}
+.ton-col-label.yes { color: var(–green); }
+.ton-col-label.no { color: #B42828; }
+.ton-item {
+font-size: 0.82rem;
+font-weight: 300;
+color: var(–ink-soft);
+line-height: 1.6;
+padding: 0.3rem 0;
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: flex-start;
+gap: 0.5rem;
+}
+.ton-item:last-child { border-bottom: none; }
+
+/* ── EXAMPLE CAPTION ── */
+.caption-example {
+background: var(–ink);
+border-radius: 14px;
+overflow: hidden;
+margin-bottom: 0.9rem;
+}
+.caption-header {
+padding: 0.7rem 1.3rem;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.caption-header-label {
+font-size: 0.58rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.35);
+font-weight: 600;
+}
+.caption-header-tag {
+font-size: 0.58rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–cherry);
+font-weight: 600;
+margin-left: auto;
+border: 1px solid rgba(139,4,53,0.4);
+padding: 0.15rem 0.5rem;
+border-radius: 2px;
+}
+.caption-body {
+padding: 1.3rem 1.5rem;
+font-size: 0.85rem;
+color: rgba(255,255,255,0.75);
+font-weight: 300;
+line-height: 1.8;
+white-space: pre-line;
+}
+.caption-hashtags {
+padding: 0 1.5rem 1.3rem;
+font-size: 0.75rem;
+color: rgba(139,4,53,0.7);
+font-weight: 400;
+line-height: 1.7;
+}
+
+/* ── RECO CARD ── */
+.reco {
+display: flex;
+gap: 1rem;
+align-items: flex-start;
+padding: 1rem 1.2rem;
+background: var(–white);
+border: 1px solid var(–border);
+border-radius: 10px;
+margin-bottom: 0.7rem;
+}
+.reco-prio {
+width: 28px;
+height: 28px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.68rem;
+font-weight: 700;
+flex-shrink: 0;
+margin-top: 0.1rem;
+}
+.reco-prio.haute { background: #F4E6E6; color: #B42828; }
+.reco-prio.moyenne { background: var(–orange-light); color: var(–orange); }
+.reco-prio.basse { background: var(–green-light); color: var(–green); }
+.reco-body { flex: 1; }
+.reco-title { font-size: 0.88rem; font-weight: 600; color: var(–ink); margin-bottom: 0.2rem; }
+.reco-desc { font-size: 0.8rem; color: var(–muted); font-weight: 300; line-height: 1.6; }
+.reco-tag {
+font-size: 0.56rem;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+font-weight: 600;
+padding: 0.15rem 0.5rem;
+border-radius: 10px;
+flex-shrink: 0;
+margin-top: 0.2rem;
+align-self: flex-start;
+}
+.reco-tag.haute { background: #F4E6E6; color: #B42828; }
+.reco-tag.moyenne { background: var(–orange-light); color: var(–orange); }
+.reco-tag.basse { background: var(–green-light); color: var(–green); }
+
+/* ── PAGE BREAK ── */
+.page-break { height: 1px; background: transparent; page-break-before: always; margin: 4rem 0 0; }
+
+/* ── FOOTER ── */
+.doc-footer {
+margin-top: 4rem;
+padding-top: 1.5rem;
+border-top: 1px solid var(–border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+.doc-footer-l { font-size: 0.67rem; color: var(–muted-light); font-weight: 300; }
+.doc-footer-l strong { color: var(–cherry); font-weight: 600; }
+.doc-footer-r { font-size: 0.65rem; color: var(–muted-light); font-weight: 300; }
+
+/* ── HASHTAG GRID ── */
+.ht-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+gap: 0.4rem;
+margin-bottom: 0.9rem;
+}
+.ht-chip {
+background: var(–cherry-light);
+border: 1px solid rgba(139,4,53,0.15);
+border-radius: 6px;
+padding: 0.4rem 0.7rem;
+font-size: 0.75rem;
+color: var(–cherry);
+font-weight: 500;
+letter-spacing: 0.02em;
+}
+.ht-chip.neutral {
+background: var(–bg);
+border-color: var(–border);
+color: var(–muted);
+}
+
+/* ── UNIVERS VISUEL ── */
+.univers-item {
+display: flex;
+align-items: flex-start;
+gap: 1rem;
+padding: 0.9rem 0;
+border-bottom: 1px solid var(–border);
+}
+.univers-item:last-child { border-bottom: none; }
+.univers-dot {
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: var(–cherry);
+flex-shrink: 0;
+margin-top: 0.55rem;
+}
+.univers-title { font-size: 0.88rem; font-weight: 600; color: var(–ink); margin-bottom: 0.15rem; }
+.univers-desc { font-size: 0.8rem; color: var(–muted); font-weight: 300; line-height: 1.6; }
+
+@media (max-width: 620px) {
+.cover-inner { padding: 2.5rem 2rem; }
+.doc { padding: 2rem 1.5rem 4rem; }
+.g2, .g3, .ton-split { grid-template-columns: 1fr; }
+.part-num { font-size: 4.5rem; }
+.part-name { font-size: 1.8rem; }
+}
+
+@media print {
+body { background: white; }
+.cover { min-height: 100vh; page-break-after: always; }
+.card, .pillar, .reco { break-inside: avoid; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ══════ COVER ══════ -->
+
+<div class="cover">
+  <div class="cover-stripe"></div>
+  <div class="cover-pattern"></div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <div class="logo-block">
+        <svg class="logo-svg" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="112" font-family="Georgia, serif" font-size="118" font-weight="bold" fill="#8B0435" letter-spacing="-6">io</text>
+        </svg>
+        <div class="logo-text">
+          <strong>Inès Ouajib</strong>
+          Community Management
+        </div>
+      </div>
+      <span class="cover-doc-type">Document de travail</span>
+    </div>
+
+```
+<div class="cover-mid">
+  <div class="cover-eyebrow">
+    <span class="cover-eyebrow-dot"></span>
+    L'Instant Glow · Salon d'esthétique
+  </div>
+  <div class="cover-h1">
+    <em>Audit Instagram</em>
+    <strong>&amp; Ligne Éditoriale</strong>
+  </div>
+  <div class="cover-divider"></div>
+  <div class="cover-desc">Analyse complète du compte @linstantglow — recommandations stratégiques, piliers de contenu, ton de voix et univers éditorial.</div>
+  <div class="cover-meta-row">
+    <div class="cover-meta">
+      <span class="cover-meta-label">Compte analysé</span>
+      <span class="cover-meta-value">@linstantglow</span>
+    </div>
+    <div class="cover-meta">
+      <span class="cover-meta-label">Date d'audit</span>
+      <span class="cover-meta-value">18 mai 2026</span>
+    </div>
+    <div class="cover-meta">
+      <span class="cover-meta-label">Préparé par</span>
+      <span class="cover-meta-value">Inès Ouajib</span>
+    </div>
+    <div class="cover-meta">
+      <span class="cover-meta-label">Abonnés</span>
+      <span class="cover-meta-value">799</span>
+    </div>
+  </div>
+</div>
+
+<div class="cover-bottom">
+  <span class="cover-bottom-note">Document de travail confidentiel · Usage interne</span>
+  <div class="cover-toc">
+    <span class="cover-toc-item">Audit</span>
+    <span class="cover-toc-item">Recommandations</span>
+    <span class="cover-toc-item">Ligne éditoriale</span>
+    <span class="cover-toc-item">Piliers</span>
+    <span class="cover-toc-item">Ton & Univers</span>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════ DOC ══════ -->
+
+<div class="doc">
+
+  <!-- ══════════════════════════════════
+       PARTIE 1 — AUDIT
+  ══════════════════════════════════ -->
+
+  <div class="part-title">
+    <div class="part-num">01</div>
+    <div class="part-meta">
+      <div class="part-tag">Analyse</div>
+      <div class="part-name">Audit du compte Instagram</div>
+      <div class="part-sub">@linstantglow · État au 18 mai 2026</div>
+    </div>
+  </div>
+
+  <!-- 1.1 Snapshot -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">📊</div>
+    <div>
+      <div class="sec-head-label">Chiffres clés</div>
+      <div class="sec-head-title">Snapshot du compte</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-top dark"><span class="card-top-title">👥 Abonnés</span></div>
+      <div class="card-body" style="text-align:center;padding:1.5rem 1rem;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--ink);line-height:1;">799</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">abonnés</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top dark"><span class="card-top-title">📌 Posts (7 mois)</span></div>
+      <div class="card-body" style="text-align:center;padding:1.5rem 1rem;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--ink);line-height:1;">24</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">posts depuis oct. 2025</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top dark"><span class="card-top-title">📈 Rythme</span></div>
+      <div class="card-body" style="text-align:center;padding:1.5rem 1rem;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--ink);line-height:1;">~3</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">posts/mois en moyenne</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note orange"><strong>Contexte :</strong> Le compte existe depuis au moins octobre 2025. Il est actif en stories (quotidiennement) mais sous-actif en posts. Le ratio abonnés/engagement potentiel est bon pour un compte local de cette taille — la base est saine.</div>
+
+  <!-- 1.2 Analyse par critère -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">🔍</div>
+    <div>
+      <div class="sec-head-label">Diagnostic</div>
+      <div class="sec-head-title">Analyse par critère</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-top dark"><span class="card-top-title">Score par critère — sur 5</span></div>
+    <div class="card-body">
+      <div class="score-item">
+        <span class="score-label">Optimisation du profil (bio, lien, photo)</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:40%"></div></div></div>
+        <span class="score-val" style="color:#B42828">2/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Régularité des publications</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill ok" style="width:50%"></div></div></div>
+        <span class="score-val" style="color:var(--orange)">2.5/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Qualité visuelle des posts</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill ok" style="width:52%"></div></div></div>
+        <span class="score-val" style="color:var(--orange)">2.5/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Captions (accroche, valeur, CTA)</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:5%"></div></div></div>
+        <span class="score-val" style="color:#B42828">0/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Stratégie hashtags</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:5%"></div></div></div>
+        <span class="score-val" style="color:#B42828">0/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Diversité des formats (Reels, carrousels, posts)</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:20%"></div></div></div>
+        <span class="score-val" style="color:#B42828">1/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Ligne éditoriale cohérente</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:10%"></div></div></div>
+        <span class="score-val" style="color:#B42828">0.5/5</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Activité stories (fréquence)</span>
+        <div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill good" style="width:90%"></div></div></div>
+        <span class="score-val" style="color:var(--green)">4.5/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.3 Ce qui fonctionne -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">✅</div>
+    <div>
+      <div class="sec-head-label">Forces</div>
+      <div class="sec-head-title">Ce qui fonctionne déjà</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-top green"><span class="card-top-title">💪 Points forts identifiés</span></div>
+      <div class="card-body">
+        <ul class="list">
+          <li><span class="list-icon">✓</span><span><strong>Stories quotidiennes actives</strong> — Sihem est déjà dans l'habitude de partager du contenu chaque jour. Cette régularité est un atout majeur souvent sous-estimé.</span></li>
+          <li><span class="list-icon">✓</span><span><strong>Charte graphique existante</strong> — Pas besoin de créer une identité visuelle de zéro. Les couleurs et le logo sont définis.</span></li>
+          <li><span class="list-icon">✓</span><span><strong>Ressources visuelles professionnelles</strong> — Photos et vidéos pro disponibles + shooting prévu. Le contenu de qualité existe.</span></li>
+          <li><span class="list-icon">✓</span><span><strong>Positionnement clair</strong> — Premium mais accessible : un positionnement différenciant dans le secteur esthétique local.</span></li>
+          <li><span class="list-icon">✓</span><span><strong>Base d'abonnés existante</strong> — 799 abonnés sur un marché local = une audience engageable dès maintenant.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top" style="background:#B42828"><span class="card-top-title">⚠️ Points de friction majeurs</span></div>
+      <div class="card-body">
+        <ul class="list">
+          <li><span class="list-icon" style="color:#B42828">✗</span><span><strong>Zéro caption sur les posts</strong> — Sans texte, aucune connexion émotionnelle avec l'audience. L'algorithme ne comprend pas le contenu.</span></li>
+          <li><span class="list-icon" style="color:#B42828">✗</span><span><strong>Zéro hashtag</strong> — Invisibilité totale pour les non-abonnés. Chaque post reste cloisonné à la communauté existante.</span></li>
+          <li><span class="list-icon" style="color:#B42828">✗</span><span><strong>Contenu répétitif</strong> — Photos sous le même angle, pas de variété dans les formats ou les sujets abordés.</span></li>
+          <li><span class="list-icon" style="color:#B42828">✗</span><span><strong>Profil non optimisé</strong> — Bio probablement incomplète, pas de CTA clair, lien non exploité.</span></li>
+          <li><span class="list-icon" style="color:#B42828">✗</span><span><strong>Pas de ligne éditoriale</strong> — Les posts ne racontent pas une histoire cohérente sur le salon.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.4 Recommandations -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">🎯</div>
+    <div>
+      <div class="sec-head-label">Plan d'action</div>
+      <div class="sec-head-title">Recommandations prioritaires</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="note cherry"><strong>Méthode de lecture :</strong> Les recommandations sont classées par priorité. <span style="color:#B42828;font-weight:600;">HAUTE</span> = à faire en premier dans la semaine 1. <span style="color:var(--orange);font-weight:600;">MOYENNE</span> = semaine 1-2. <span style="color:var(--green);font-weight:600;">BASSE</span> = à intégrer progressivement.</div>
+
+  <div class="reco">
+    <div class="reco-prio haute">1</div>
+    <div class="reco-body">
+      <div class="reco-title">Optimiser la bio Instagram complètement</div>
+      <div class="reco-desc">La bio est la première impression. Elle doit contenir : ce que vous faites, pour qui, où vous êtes, et un appel à l'action clair (réserver / voir les soins). Ajouter un lien vers la page de réservation ou un Linktree.</div>
+    </div>
+    <div class="reco-tag haute">Haute</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio haute">2</div>
+    <div class="reco-body">
+      <div class="reco-title">Créer et déployer une stratégie hashtags en 3 niveaux</div>
+      <div class="reco-desc">Mixer hashtags locaux (#paysdegex, #suisseromande, #hautesavoie), sectoriels (#esthetique, #beaute, #soinsvisage) et de niche (#instantglow, #skincare, #glowtips). Viser 20–25 hashtags par post en 3 sets différents à alterner.</div>
+    </div>
+    <div class="reco-tag haute">Haute</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio haute">3</div>
+    <div class="reco-body">
+      <div class="reco-title">Systématiser les captions avec une structure en 3 temps</div>
+      <div class="reco-desc">Accroche forte (1ère ligne avant "voir plus") → Corps du message avec valeur ou storytelling → Appel à l'action clair (commenter, réserver, partager). Sans caption, un post ne génère ni engagement ni visibilité.</div>
+    </div>
+    <div class="reco-tag haute">Haute</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio moyenne">4</div>
+    <div class="reco-body">
+      <div class="reco-title">Varier les angles de prise de vue et les formats de contenu</div>
+      <div class="reco-desc">Alterner : avant/après soins, coulisses du salon, portraits de Sihem, focus produits, résultats clients, ambiance salon. Intégrer des carrousels (très bien performants) et des Reels courts pour la portée.</div>
+    </div>
+    <div class="reco-tag moyenne">Moyenne</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio moyenne">5</div>
+    <div class="reco-body">
+      <div class="reco-title">Créer des highlights cohérents sur le profil</div>
+      <div class="reco-desc">Organiser les stories sauvegardées en highlights thématiques : Soins, Résultats, En coulisses, Avis clients, Prendre RDV. Ces highlights servent de vitrine permanente pour les nouveaux visiteurs.</div>
+    </div>
+    <div class="reco-tag moyenne">Moyenne</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio moyenne">6</div>
+    <div class="reco-body">
+      <div class="reco-title">Passer à 3–4 posts par semaine (contre ~3/mois actuellement)</div>
+      <div class="reco-desc">L'algorithme Instagram favorise les comptes réguliers. 3 posts/semaine bien structurés valent mieux que 1 post/semaine sans stratégie. Le calendrier éditorial prévu sur 2 semaines permet d'atteindre ce rythme facilement.</div>
+    </div>
+    <div class="reco-tag moyenne">Moyenne</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio basse">7</div>
+    <div class="reco-body">
+      <div class="reco-title">Intégrer des Reels dans la stratégie de contenu</div>
+      <div class="reco-desc">Les Reels bénéficient de la meilleure portée organique sur Instagram en 2026. Formats recommandés : transformation avant/après (très viral dans l'esthétique), tutoriels soins rapides, ambiance ASMR salon. Durée idéale : 15–30 secondes.</div>
+    </div>
+    <div class="reco-tag basse">À terme</div>
+  </div>
+
+  <div class="reco">
+    <div class="reco-prio basse">8</div>
+    <div class="reco-body">
+      <div class="reco-title">Valoriser les avis clients et le contenu UGC</div>
+      <div class="reco-desc">Les témoignages clients sont le contenu le plus persuasif dans l'esthétique. Encourager les clientes à taguer le salon, republier les mentions avec permission, créer des posts dédiés aux retours d'expérience.</div>
+    </div>
+    <div class="reco-tag basse">À terme</div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PARTIE 2 — LIGNE ÉDITORIALE
+  ══════════════════════════════════ -->
+
+  <div class="page-break"></div>
+
+  <div class="part-title" style="margin-top:4rem;">
+    <div class="part-num">02</div>
+    <div class="part-meta">
+      <div class="part-tag">Stratégie éditoriale</div>
+      <div class="part-name">Ligne Éditoriale</div>
+      <div class="part-sub">Piliers de contenu · Ton de voix · Univers éditorial</div>
+    </div>
+  </div>
+
+  <!-- Positionnement éditorial -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">🌟</div>
+    <div>
+      <div class="sec-head-label">Vision</div>
+      <div class="sec-head-title">Positionnement éditorial</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-top dark"><span class="card-top-title">La promesse éditoriale de @linstantglow</span></div>
+    <div class="card-body">
+      <p>L'Instant Glow est le salon qui prouve que <strong>la beauté professionnelle est accessible</strong>. Sur Instagram, le compte ne se contente pas de montrer des résultats — il <em>éduque, inspire et crée une relation de confiance</em> avec chaque femme qui se reconnaît dans l'univers du salon. L'expertise de Sihem est mise en lumière de manière authentique, jamais froide ni distante.</p>
+      <br>
+      <p>Chaque publication doit répondre à cette question : <strong>est-ce que ce post donne envie de prendre rendez-vous, ou de revenir ?</strong></p>
+    </div>
+  </div>
+
+  <!-- Piliers -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">🏛️</div>
+    <div>
+      <div class="sec-head-label">Structure de contenu</div>
+      <div class="sec-head-title">Les 5 piliers de contenu</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="note cherry"><strong>Règle d'or :</strong> Chaque semaine doit couvrir au moins 3 piliers différents pour garantir la diversité du feed et toucher différents besoins de l'audience. Ne jamais rester sur le même pilier plus de 2 posts consécutifs.</div>
+
+  <!-- Pilier 1 -->
+
+  <div class="pillar">
+    <div class="pillar-num">01</div>
+    <div class="pillar-header">
+      <div class="pillar-tag">Pilier 1 · ~25% du contenu</div>
+      <div class="pillar-title">L'Expertise & les Résultats</div>
+      <div class="pillar-subtitle">Montrer le savoir-faire, prouver la valeur, inspirer confiance</div>
+    </div>
+    <div class="pillar-body">
+      <p>Ce pilier positionne Sihem comme une experte de confiance dans son domaine. Il s'agit de montrer concrètement les résultats des soins, d'éduquer l'audience sur les techniques et les produits, et de mettre en valeur le niveau de professionnalisme du salon.</p>
+      <p><strong>Idées de contenu :</strong> Avant/après soins (avec consentement client) · Focus sur une technique (soin du visage, épilation, etc.) · Explication d'un soin en 3 étapes · Résultat d'un traitement avec témoignage client · "Pourquoi je recommande ce soin pour [peau mixte / teint terne / etc.]"</p>
+      <div class="pillar-formats">
+        <span class="format-chip">Carrousel avant/après</span>
+        <span class="format-chip">Post simple avec résultat</span>
+        <span class="format-chip">Reel démonstration</span>
+        <span class="format-chip">Citation cliente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pilier 2 -->
+
+  <div class="pillar">
+    <div class="pillar-num">02</div>
+    <div class="pillar-header">
+      <div class="pillar-tag">Pilier 2 · ~25% du contenu</div>
+      <div class="pillar-title">L'Éducation Beauté</div>
+      <div class="pillar-subtitle">Apporter de la valeur, fidéliser, asseoir l'autorité</div>
+    </div>
+    <div class="pillar-body">
+      <p>Ce pilier crée de la valeur au-delà de la vente directe. En partageant des conseils pratiques et des connaissances beauté, L'Instant Glow devient une référence dans laquelle l'audience revient chercher des informations. C'est le pilier qui génère le plus de sauvegardes et de partages.</p>
+      <p><strong>Idées de contenu :</strong> "3 habitudes qui abîment votre peau" · "Comment entretenir vos sourcils entre deux séances" · "Quel soin pour votre type de peau ?" (carrousel interactif) · Démystifier un mythe beauté · FAQ soins : les questions les plus posées · Routine beauté conseillée selon la saison</p>
+      <div class="pillar-formats">
+        <span class="format-chip">Carrousel éducatif</span>
+        <span class="format-chip">Infographie simple</span>
+        <span class="format-chip">Post "astuce du jour"</span>
+        <span class="format-chip">Reel conseil rapide</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pilier 3 -->
+
+  <div class="pillar">
+    <div class="pillar-num">03</div>
+    <div class="pillar-header">
+      <div class="pillar-tag">Pilier 3 · ~20% du contenu</div>
+      <div class="pillar-title">L'Univers du Salon</div>
+      <div class="pillar-subtitle">Créer du lien, humaniser la marque, donner envie de venir</div>
+    </div>
+    <div class="pillar-body">
+      <p>Ce pilier montre les coulisses de L'Instant Glow : l'ambiance, l'espace, Sihem elle-même, les petits moments du quotidien du salon. Il crée de la proximité et de l'attachement émotionnel. Les clientes potentielles se projettent dans l'espace avant même d'y mettre les pieds.</p>
+      <p><strong>Idées de contenu :</strong> L'ambiance du salon (lumière, détails, décoration) · Sihem en train de travailler (avec permission) · "Ma journée au salon" (format vlog stories ou Reel) · Présentation d'un nouveau produit ou équipement · "Le salon est prêt pour vous" (flat lay, détails) · Derrière le comptoir</p>
+      <div class="pillar-formats">
+        <span class="format-chip">Post ambiance</span>
+        <span class="format-chip">Reel coulisses</span>
+        <span class="format-chip">Photo portrait Sihem</span>
+        <span class="format-chip">Flat lay produits</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pilier 4 -->
+
+  <div class="pillar">
+    <div class="pillar-num">04</div>
+    <div class="pillar-header">
+      <div class="pillar-tag">Pilier 4 · ~20% du contenu</div>
+      <div class="pillar-title">La Confiance Client</div>
+      <div class="pillar-subtitle">Preuves sociales, témoignages, communauté</div>
+    </div>
+    <div class="pillar-body">
+      <p>Les avis clients et les preuves sociales sont le contenu le plus persuasif dans l'esthétique. Ce pilier rassure les prospects, récompense les clientes fidèles et renforce le sentiment d'appartenance à la communauté de L'Instant Glow.</p>
+      <p><strong>Idées de contenu :</strong> Partage d'avis clients Google ou Instagram (mis en forme) · Témoignage en photo ou vidéo · "Merci à [prénom] pour sa fidélité" (avec accord) · Reshare de stories clientes qui mentionnent le salon · "Elles ont osé — leur résultat" · Post de remerciements communauté</p>
+      <div class="pillar-formats">
+        <span class="format-chip">Post témoignage</span>
+        <span class="format-chip">Carrousel avis clients</span>
+        <span class="format-chip">Reshare story cliente</span>
+        <span class="format-chip">Post gratitude</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pilier 5 -->
+
+  <div class="pillar">
+    <div class="pillar-num">05</div>
+    <div class="pillar-header">
+      <div class="pillar-tag">Pilier 5 · ~10% du contenu</div>
+      <div class="pillar-title">L'Offre & l'Actualité</div>
+      <div class="pillar-subtitle">Promotions, nouveautés, prises de rendez-vous</div>
+    </div>
+    <div class="pillar-body">
+      <p>Ce pilier est le seul directement commercial — et c'est bien pour ça qu'il représente la part la plus faible. L'erreur commune est de trop vendre sur les réseaux. Utilisé avec parcimonie (1 post sur 10), ce pilier est efficace car l'audience n'est pas saturée de messages commerciaux.</p>
+      <p><strong>Idées de contenu :</strong> Nouveau soin ou prestation disponible · Promotion saisonnière ou pour un événement · "Il reste 3 créneaux cette semaine" · Offre spéciale fidélité · Horaires et informations pratiques · Post de clôture de mois avec invite à réserver</p>
+      <div class="pillar-formats">
+        <span class="format-chip">Post offre</span>
+        <span class="format-chip">Story interactive</span>
+        <span class="format-chip">Post informatif</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TON DE VOIX -->
+
+  <div class="sec-head" style="margin-top:2.5rem">
+    <div class="sec-head-icon">🗣️</div>
+    <div>
+      <div class="sec-head-label">Identité de communication</div>
+      <div class="sec-head-title">Le Ton de Voix</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="note cherry"><strong>En une phrase :</strong> L'Instant Glow parle comme <em>une professionnelle passionnée et bienveillante</em> — elle partage son expertise avec enthousiasme, sans se mettre sur un piédestal, et fait sentir à chaque cliente qu'elle est entre de bonnes mains.</div>
+
+  <div class="card" style="margin-bottom:0.9rem">
+    <div class="card-top dark"><span class="card-top-title">Les 3 mots qui définissent le ton</span></div>
+    <div class="card-body">
+      <div class="g3" style="margin-bottom:0;">
+        <div style="text-align:center;padding:1rem 0.5rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--cherry);">Expert</div>
+          <div style="font-size:0.74rem;color:var(--muted);font-weight:300;margin-top:0.3rem;line-height:1.5;">On sait de quoi on parle. Chaque contenu reflète la maîtrise du métier.</div>
+        </div>
+        <div style="text-align:center;padding:1rem 0.5rem;border-left:1px solid var(--border);border-right:1px solid var(--border);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--cherry);">Proche</div>
+          <div style="font-size:0.74rem;color:var(--muted);font-weight:300;margin-top:0.3rem;line-height:1.5;">On s'adresse à des personnes, pas à une audience. Chaleur et authenticité.</div>
+        </div>
+        <div style="text-align:center;padding:1rem 0.5rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--cherry);">Inspirant</div>
+          <div style="font-size:0.74rem;color:var(--muted);font-weight:300;margin-top:0.3rem;line-height:1.5;">On donne envie. Se sentir belle est accessible, et on le montre.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ton-split">
+    <div class="ton-col">
+      <div class="ton-col-label yes">✅ On dit / on écrit</div>
+      <div class="ton-item"><span>💬</span> Tu (vouvoiement seulement pour les posts très formels)</div>
+      <div class="ton-item"><span>💬</span> "Chez nous, on…" — le salon comme espace bienveillant</div>
+      <div class="ton-item"><span>💬</span> Des questions qui invitent à réagir ("Et toi ?" "Vous connaissez ?)"</div>
+      <div class="ton-item"><span>💬</span> Des emojis sélectifs (✨ 🌸 💆‍♀️ 🌟) — jamais plus de 2-3 par post</div>
+      <div class="ton-item"><span>💬</span> Des phrases courtes et rythmées sur Instagram</div>
+      <div class="ton-item"><span>💬</span> Le prénom de Sihem quand elle partage son point de vue</div>
+    </div>
+    <div class="ton-col">
+      <div class="ton-col-label no">❌ On évite</div>
+      <div class="ton-item"><span>🚫</span> Le jargon technique incompréhensible sans explication</div>
+      <div class="ton-item"><span>🚫</span> Les majuscules agressives POUR METTRE EN VALEUR</div>
+      <div class="ton-item"><span>🚫</span> Les posts purement commerciaux sans valeur ajoutée</div>
+      <div class="ton-item"><span>🚫</span> Les captions qui ressemblent à une liste de prix</div>
+      <div class="ton-item"><span>🚫</span> Le ton froid, distant ou trop corporatif</div>
+      <div class="ton-item"><span>🚫</span> Les hashtags génériques sans rapport (#love #beautiful #life)</div>
+    </div>
+  </div>
+
+  <!-- Exemple de caption -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">✍️</div>
+    <div>
+      <div class="sec-head-label">Exemples concrets</div>
+      <div class="sec-head-title">Captions type par pilier</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="caption-example">
+    <div class="caption-header">
+      <span class="caption-header-label">Exemple de caption</span>
+      <span class="caption-header-tag">Pilier 1 — Résultats</span>
+    </div>
+    <div class="caption-body">Regardez cette transformation ✨
+
+Quand on dit que la peau peut retrouver de l’éclat en une seule séance, ce n’est pas du marketing — c’est ce que nous voyons chaque jour chez L’Instant Glow.
+
+Ce soin visage a été personnalisé en fonction du type de peau de notre cliente : nettoyage en profondeur, soin hydratant intensif, et finition lumineuse.
+
+Le résultat ? Une peau comme elle ne l’avait pas vue depuis longtemps 🌸
+
+📍 Pays de Gex — Réservations via le lien en bio</div>
+<div class="caption-hashtags">#InstantGlow #SalonEsthetique #SoinVisage #BeautePaysDuGex #Esthetique #GlowSkin #SuisseRomande #HauteSavoie #SoinPeau #Skincare #TransformationPeau #EstheticienneDiplomee #BeautePremiumAccessible</div>
+
+  </div>
+
+  <div class="caption-example">
+    <div class="caption-header">
+      <span class="caption-header-label">Exemple de caption</span>
+      <span class="caption-header-tag">Pilier 2 — Éducation</span>
+    </div>
+    <div class="caption-body">Tu savais que tu ne devrais jamais faire ça le soir ? 👇
+
+Appliquer ta crème hydratante sur une peau mal nettoyée, c’est comme hydrater par-dessus une couche de pollution et de sébum.
+
+Le nettoyage du soir est l’étape la plus importante de ta routine beauté — et pourtant la plus souvent bâclée.
+
+3 étapes simples pour un nettoyage efficace :
+→ Démaquillant ou huile nettoyante pour dissoudre
+→ Gel ou mousse nettoyante pour purifier
+→ Eau micellaire en finition si besoin
+
+Ton produit hydratant agit enfin vraiment. Tu me diras merci ✨
+
+💬 Quelle est ton étape beauté préférée le soir ? Dis-moi en commentaire !</div>
+<div class="caption-hashtags">#ConseilBeaute #RoutineBeaute #SkincareAdvice #PrendresSoinDeSoi #InstantGlow #Esthetique #TipsBeaute #SoinNaturel #SkincareRoutine #NettoyageVisage #PeauSaine</div>
+
+  </div>
+
+  <div class="caption-example">
+    <div class="caption-header">
+      <span class="caption-header-label">Exemple de caption</span>
+      <span class="caption-header-tag">Pilier 3 — Univers du salon</span>
+    </div>
+    <div class="caption-body">L'Instant Glow, c'est d'abord un espace 🌸
+
+On a créé ce salon pour que chaque femme qui y entre se sente accueillie, choyée — et en sécurité.
+
+Pas de jugement. Pas de pression. Juste un moment pour soi, entre des mains expertes.
+
+C’est ça, notre philosophie depuis le premier jour.
+
+Et si c’est votre première visite ? On vous attend avec plaisir 💆‍♀️
+
+📍 Pays de Gex · Réserver en bio</div>
+<div class="caption-hashtags">#InstantGlow #SalonEsthetique #MomentPourSoi #BienEtre #EspaceDeBienEtre #Estheticienne #PaysDuGex #SuisseRomande #BeauteAuthentique #FemmeForte</div>
+
+  </div>
+
+  <!-- UNIVERS ÉDITORIAL -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">🎨</div>
+    <div>
+      <div class="sec-head-label">Identité visuelle éditoriale</div>
+      <div class="sec-head-title">L'Univers Éditorial</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="note cherry"><strong>L'univers visuel d'Instagram doit refléter</strong> le positionnement du salon : premium mais accessible, chaleureux mais professionnel. Chaque image publiée doit donner l'impression d'un salon soigné où l'on a envie de se rendre.</div>
+
+  <div class="card" style="margin-bottom:1rem">
+    <div class="card-top dark"><span class="card-top-title">Palette éditoriale & ambiance visuelle</span></div>
+    <div class="card-body">
+      <div class="univers-item">
+        <div class="univers-dot"></div>
+        <div>
+          <div class="univers-title">Palette de couleurs du feed</div>
+          <div class="univers-desc">Tons neutres chauds dominants (crème, nude, beige rosé, blanc cassé) — en accord avec la charte graphique existante. Les touches de couleur de la charte (bordeaux/cherry ?) sont utilisées avec parcimonie comme accents. Éviter les filtres trop saturés ou trop "vintage".</div>
+        </div>
+      </div>
+      <div class="univers-item">
+        <div class="univers-dot"></div>
+        <div>
+          <div class="univers-title">Lumière & style photo</div>
+          <div class="univers-desc">Lumière naturelle douce ou lumière studio professionnelle. Éviter les photos trop sombres ou avec des ombres dures. L'esthétique soignée des photos doit refléter la qualité des soins proposés. Format carré ou portrait (4:5) privilégié pour le feed.</div>
+        </div>
+      </div>
+      <div class="univers-item">
+        <div class="univers-dot"></div>
+        <div>
+          <div class="univers-title">Typographie des visuels</div>
+          <div class="univers-desc">Utiliser les polices de la charte graphique existante sur les templates. Hiérarchie claire : titre lisible en 2 secondes, sous-titre explicatif. Éviter de surcharger les visuels de texte — laisser la photo respirer.</div>
+        </div>
+      </div>
+      <div class="univers-item">
+        <div class="univers-dot"></div>
+        <div>
+          <div class="univers-title">Cohérence du feed global</div>
+          <div class="univers-desc">Alternance de contenu photo (ambiance, résultats) et contenu graphique (carrousels éducatifs, citations). Éviter 2 posts au même format à la suite. Le feed vu en grille doit être harmonieux et donner envie de "suivre" au premier coup d'œil.</div>
+        </div>
+      </div>
+      <div class="univers-item" style="border-bottom:none">
+        <div class="univers-dot"></div>
+        <div>
+          <div class="univers-title">Le logo et les éléments de marque</div>
+          <div class="univers-desc">Logo discret en bas de chaque visuel graphique (carrousels, infographies). Pas de watermark agressif sur les photos de résultats. La marque est présente sans écraser le contenu.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stratégie hashtags -->
+
+  <div class="sec-head">
+    <div class="sec-head-icon">🔖</div>
+    <div>
+      <div class="sec-head-label">Référentiel</div>
+      <div class="sec-head-title">Banque de hashtags stratégique</div>
+    </div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="note cherry">Créer 3 sets de 20-25 hashtags à alterner d'un post à l'autre. L'algorithme Instagram pénalise l'utilisation répétitive des mêmes hashtags.</div>
+
+  <div class="card">
+    <div class="card-top"><span class="card-top-title">📍 Hashtags locaux — à utiliser dans chaque post</span></div>
+    <div class="card-body" style="padding:1rem;">
+      <div class="ht-grid">
+        <span class="ht-chip">#paysdegex</span>
+        <span class="ht-chip">#suisseromande</span>
+        <span class="ht-chip">#hautesavoie</span>
+        <span class="ht-chip">#genevecampagne</span>
+        <span class="ht-chip">#ferney</span>
+        <span class="ht-chip">#divonne</span>
+        <span class="ht-chip">#gex</span>
+        <span class="ht-chip">#saintgenis</span>
+        <span class="ht-chip">#frontalier</span>
+        <span class="ht-chip">#romande</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-top"><span class="card-top-title">💅 Hashtags sectoriels</span></div>
+      <div class="card-body" style="padding:1rem;">
+        <div class="ht-grid">
+          <span class="ht-chip">#esthetique</span>
+          <span class="ht-chip">#salonesthetique</span>
+          <span class="ht-chip">#soinsvisage</span>
+          <span class="ht-chip">#beaute</span>
+          <span class="ht-chip">#soinpeau</span>
+          <span class="ht-chip">#skincare</span>
+          <span class="ht-chip">#estheticienne</span>
+          <span class="ht-chip">#epilation</span>
+          <span class="ht-chip">#glowskin</span>
+          <span class="ht-chip">#peausaine</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="card-top-title">✨ Hashtags de niche & marque</span></div>
+      <div class="card-body" style="padding:1rem;">
+        <div class="ht-grid">
+          <span class="ht-chip">#instantglow</span>
+          <span class="ht-chip">#linstantglow</span>
+          <span class="ht-chip">#glowup</span>
+          <span class="ht-chip">#selfcare</span>
+          <span class="ht-chip">#momentpourSoi</span>
+          <span class="ht-chip">#bienetre</span>
+          <span class="ht-chip">#beautenatuelle</span>
+          <span class="ht-chip">#skincareroutine</span>
+          <span class="ht-chip">#peaueclat</span>
+          <span class="ht-chip">#conseilbeaute</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+
+  <div class="doc-footer">
+    <div class="doc-footer-l">
+      <strong>Inès Ouajib</strong> · Community Management<br>
+      <span>Audit & Ligne éditoriale — L'Instant Glow · Mai 2026</span>
+    </div>
+    <div class="doc-footer-r">Document de travail confidentiel</div>
+  </div>
+
+</div>
+</body>
+</html>
