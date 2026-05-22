@@ -349,10 +349,11 @@
   }
 
   @media print {
-    body { background: white; }
-    .cover { min-height: 100vh; page-break-after: always; }
-    .card, .pillar, .reco { break-inside: avoid; }
-  }
+  body { background: white; }
+  .cover { min-height: 100vh; page-break-after: always; }
+  .card, .pillar, .reco { break-inside: avoid; }
+  img[src^="data:image/svg"] { display: none; }
+}
 </style>
 </head>
 <body>
